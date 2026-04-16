@@ -134,6 +134,9 @@ body.light {
 body.light .header {
   background: linear-gradient(135deg,#0369a1 0%,#1e3a8a 100%);
 }
+body.light .header h1 { color: #ffffff !important; }
+body.light .header .sub { color: rgba(255,255,255,0.80) !important; }
+body.light .header .badge { background: rgba(255,255,255,0.2); color: #ffffff; }
 body.light .stat-card,
 body.light .chart-card,
 body.light .investor-detail,
@@ -149,7 +152,11 @@ body.light .tabs {
 body.light tbody tr:hover { background: rgba(2,132,199,.06); }
 body.light thead th { background: #e2e8f0; color: #475569; }
 body.light .tooltip { background:#fff; color:#0f172a; border-color:#0284c7; }
-body.light #networkSvg text { fill: #1e293b !important; stroke: #f1f5f9 !important; }
+body.light #networkSvg text { fill: #1e293b !important; stroke: none !important; }
+body.light #networkSvg .node-label { fill: #1e293b !important; stroke: #ffffff !important; stroke-width: 2px !important; paint-order: stroke; }
+body.light #networkSvg .edge-pct-lbl { fill: #475569 !important; stroke: none !important; }
+.donut-leg-txt { fill: #f1f5f9; }
+body.light .donut-leg-txt { fill: #1e293b !important; }
 body.light .network-legend { background: rgba(241,245,249,0.95); color: #0f172a; }
 body.light .footer { border-top-color: #e2e8f0; }
 
@@ -656,7 +663,7 @@ function drawPie(selector, data, tooltip) {
   data.forEach((d,i) => {
     const row = lg.append('g').attr('transform', `translate(0, ${i*24})`);
     row.append('rect').attr('width',12).attr('height',12).attr('rx',3).attr('fill',d.color);
-    row.append('text').attr('x',18).attr('y',10).attr('fill','#f1f5f9').attr('font-size','12px')
+    row.append('text').attr('x',18).attr('y',10).attr('class','donut-leg-txt').attr('font-size','12px')
       .text(`${d.label}: ${d.value} (${(d.value/total*100).toFixed(1)}%)`);
   });
 }
@@ -880,7 +887,7 @@ function updateNetwork() {
     const src = nodes.find(n=>n.id===(typeof d.source==='string'?d.source:d.source.id));
     return src && src.layer <= 1;
   })).enter().append('text')
-    .attr('fill','#94a3b8').attr('font-size','9px').attr('text-anchor','middle').attr('dy','-3');
+    .attr('class','edge-pct-lbl').attr('font-size','9px').attr('text-anchor','middle').attr('dy','-3');
 
   // Nodes
   const node = networkG.append('g').selectAll('g').data(nodes).enter().append('g')
@@ -912,6 +919,7 @@ function updateNetwork() {
 
   // Node labels
   node.append('text')
+    .attr('class', 'node-label')
     .attr('text-anchor', 'middle')
     .attr('dy', d => {
       if (d.type === 'stock') return d.layer===0 ? 36 : 28;
