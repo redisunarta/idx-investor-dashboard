@@ -2,7 +2,7 @@
 
 **An interactive web dashboard mapping significant shareholders (>1% ownership) across all IDX-listed companies, built from official KSEI (Kustodian Sentral Efek Indonesia) data.**
 
-🔗 **[Live Dashboard →](https://your-username.github.io/idx-investor-dashboard/)**
+🔗 **[Live Dashboard →](https://redisunarta.github.io/idx-investor-dashboard/)**
 
 ---
 
@@ -115,17 +115,6 @@ Tracks changes in significant shareholding across two comparable periods:
 - **January aggregate column** — for the Feb → Mar view, shows the January local/foreign aggregate ownership % sourced from the Balancepos file (note: this is category-level, not individual named investor level)
 - **Export** each section to Excel or CSV
 
-### Tab 7 — 🏢 Conglomerate Map
-
-Maps IDX-listed companies to their Indonesian conglomerate owners:
-
-- **33 conglomerate groups** identified from actual KSEI-reported holding company names, including Hartono (Djarum/BCA), Widjaja (Sinar Mas), Wonowidjojo (Gudang Garam), Bakrie, Salim, Riady (Lippo), and others
-- **Bubble chart** showing each group's relative IDX holding value
-- **Click any bubble** to see a full breakdown of all positions within that group — stock, ownership %, holding value, and sector
-- **Conglomerate cards** summarise each group's total value, number of stocks held, and affiliated entities
-
-> **Note on methodology:** Conglomerate assignment is based on the legal holding company names as reported by KSEI. Some groups use multiple holding entities (e.g. the Hartono family holds BCA through *PT Dwimuria Investama Andalan*, distinct from other Djarum group entities). The Wonowidjojo family (Gudang Garam) is mapped separately from the Hartono/Djarum group. Positions held via nominee or custodian accounts may not be captured.
-
 ---
 
 ## 🚀 Getting Started
@@ -194,23 +183,6 @@ python build_dashboard.py   # Generates the full dashboard HTML
 | SC | Securities Company |
 | FD | Foundation (Yayasan) |
 | OT | Others |
-
-### Conglomerate Groups (33 total)
-
-Selected groups included in the mapping:
-
-| Group | Key Holding Entity | Major Stakes |
-|---|---|---|
-| Hartono / Djarum | PT Dwimuria Investama Andalan | BBCA |
-| Wonowidjojo / Gudang Garam | PT Suryaduta Investama | GGRM |
-| Widjaja / Sinar Mas | PT Sinarmas Sekuritas, APP entities | SMGR, INKP, TKIM |
-| Bakrie | PT Bakrie & Brothers | BUMI, UNSP, BRMS |
-| Salim | PT Indofood, PT Indomobil | ICBP, INDF, IMAS |
-| Riady / Lippo | PT Lippo Karawaci | LPKR, SILOAM |
-| Prajogo Pangestu | PT Barito Pacific | BREN, TPIA, BRPT |
-| … and 26 more | | |
-
----
 
 ## ⚠️ Disclaimers
 
